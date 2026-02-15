@@ -1,0 +1,2447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | Flood Relief Fund</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a73e8;
+            --primary-dark: #0d47a1;
+            --secondary: #34a853;
+            --accent: #ea4335;
+            --light: #f8f9fa;
+            --dark: #202124;
+            --gray: #5f6368;
+            --light-gray: #e8eaed;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+            --border-radius: 12px;
+            --animation-timing: cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--light);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header & Navigation */
+        .header-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            z-index: 1000;
+            padding: 15px 0;
+            transition: var(--transition);
+            animation: slideDown 0.8s var(--animation-timing);
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .header-bar.scrolled {
+            padding: 10px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            animation: logoFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes logoFloat {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+
+        .logo img {
+            height: 50px;
+            transition: var(--transition);
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .logo-text span {
+            color: var(--secondary);
+        }
+
+        #toggle {
+            display: none;
+        }
+
+        .menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary);
+        }
+
+        .Navbar {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .Navbar a {
+            font-weight: 500;
+            font-size: 1rem;
+            padding: 8px 0;
+            position: relative;
+            color: var(--gray);
+        }
+
+        .Navbar a:hover {
+            color: var(--primary);
+        }
+
+        .Navbar a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .Navbar a:hover::after {
+            width: 100%;
+        }
+
+        .Navbar a.active {
+            color: var(--primary);
+        }
+
+        .Navbar a.active::after {
+            width: 100%;
+        }
+
+        .admin-nav-item {
+            background: var(--accent);
+            color: white !important;
+            padding: 8px 15px !important;
+            border-radius: 20px;
+            margin-left: 10px;
+            animation: adminPulse 2s infinite;
+        }
+
+        .admin-nav-item:hover {
+            background: #d32f2f;
+            color: white !important;
+        }
+
+        @keyframes adminPulse {
+            0%, 100% {
+                box-shadow: 0 0 0 0 rgba(234, 67, 53, 0.4);
+            }
+            50% {
+                box-shadow: 0 0 0 8px rgba(234, 67, 53, 0);
+            }
+        }
+
+        .donate-btn-nav {
+            background: linear-gradient(135deg, var(--secondary), #2e8b47);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(52, 168, 83, 0.3);
+            transition: var(--transition);
+            animation: pulseGlow 2s infinite;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% {
+                box-shadow: 0 4px 15px rgba(52, 168, 83, 0.3);
+            }
+            50% {
+                box-shadow: 0 4px 20px rgba(52, 168, 83, 0.5);
+            }
+        }
+
+        .donate-btn-nav:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 6px 20px rgba(52, 168, 83, 0.4);
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 85vh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                        url('images/hy.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            margin-top: 80px;
+            overflow: hidden;
+            animation: heroZoom 20s infinite alternate;
+        }
+
+        @keyframes heroZoom {
+            0% {
+                background-position: center;
+                background-size: 100%;
+            }
+            100% {
+                background-position: center;
+                background-size: 105%;
+            }
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 0 20px;
+            z-index: 2;
+            animation: fadeInUp 1.2s var(--animation-timing) 0.3s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            animation: titleGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes titleGlow {
+            from {
+                text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            }
+            to {
+                text-shadow: 0 2px 15px rgba(26, 115, 232, 0.3);
+            }
+        }
+
+        .typing-container {
+            min-height: 120px;
+            margin-bottom: 30px;
+        }
+
+        .typing {
+            font-size: 1.4rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            opacity: 0.9;
+            text-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 3px;
+            height: 1.4rem;
+            background-color: white;
+            margin-left: 5px;
+            animation: blink 0.7s infinite;
+            vertical-align: middle;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .fade-text {
+            font-size: 1.2rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease, transform 1s ease;
+            margin-bottom: 15px;
+        }
+
+        .fade-text.fade-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 14px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-block;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--secondary), #2e8b47);
+            color: white;
+            box-shadow: 0 4px 15px rgba(52, 168, 83, 0.3);
+            animation: btnPulse 2.5s infinite;
+        }
+
+        @keyframes btnPulse {
+            0%, 100% {
+                transform: translateY(0) scale(1);
+            }
+            50% {
+                transform: translateY(-2px) scale(1.02);
+            }
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(52, 168, 83, 0.4);
+            color: white;
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+            animation: btnFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes btnFloat {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-3px);
+            }
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-5px);
+        }
+
+        /* Stats Section */
+        .impact-stats {
+            padding: 80px 0;
+            background-color: #f0f7ff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 40px 20px;
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            animation: cardFloat 6s ease-in-out infinite;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        @keyframes cardFloat {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .stat-card.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-15px) rotateX(5deg);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .stat-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            animation: iconBounce 2s infinite;
+        }
+
+        @keyframes iconBounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+
+        .stat-number {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 10px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .stat-label {
+            color: var(--gray);
+            font-weight: 500;
+        }
+
+        .stat-source {
+            font-size: 0.8rem;
+            color: var(--gray);
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        /* Recent Donations */
+        .recent-donations {
+            background-color: #f9f9f9;
+            padding: 80px 0;
+            border-radius: var(--border-radius);
+            margin: 40px auto;
+            max-width: 1200px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .recent-donations.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .donation-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .donation-card {
+            background: white;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--secondary);
+            transition: var(--transition);
+            animation: donationSlide 0.5s ease-out;
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+
+        @keyframes donationSlide {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .donation-card:nth-child(1) { animation-delay: 0.1s; }
+        .donation-card:nth-child(2) { animation-delay: 0.2s; }
+        .donation-card:nth-child(3) { animation-delay: 0.3s; }
+        .donation-card:nth-child(4) { animation-delay: 0.4s; }
+
+        .donation-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .donor-name {
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+
+        .donation-amount {
+            color: var(--secondary);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 10px 0;
+            animation: amountPulse 2s infinite;
+        }
+
+        @keyframes amountPulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.8;
+            }
+        }
+
+        .donation-date {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* News & Updates Section */
+        .news-section {
+            padding: 100px 0;
+            background-color: #f8f9fa;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .section-title.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title p {
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .news-posts {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .news-card {
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateY(30px) scale(0.95);
+            transition: opacity 0.8s ease, transform 0.8s ease, box-shadow 0.3s ease;
+        }
+
+        .news-card.animated {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .news-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            z-index: 2;
+        }
+
+        .news-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .news-card:hover .news-image {
+            transform: scale(1.05);
+        }
+
+        .news-content {
+            padding: 25px;
+        }
+
+        .news-meta {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .news-category {
+            background: var(--primary);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .news-date {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .news-title {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+            transition: var(--transition);
+        }
+
+        .news-card:hover .news-title {
+            color: var(--primary);
+        }
+
+        .news-excerpt {
+            color: var(--gray);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .news-read-more {
+            color: var(--primary);
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+
+        .news-card:hover .news-read-more {
+            gap: 12px;
+            color: var(--secondary);
+        }
+
+        /* Gallery Section */
+        .gallery-section {
+            padding: 100px 0;
+            background-color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .gallery-figure {
+            position: relative;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            height: 350px;
+            opacity: 0;
+            transform: translateY(30px) scale(0.9);
+            transition: opacity 0.8s ease, transform 0.8s ease, box-shadow 0.3s ease;
+        }
+
+        .gallery-figure.animated {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .gallery-figure:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            z-index: 2;
+        }
+
+        .gallery-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            filter: brightness(0.9);
+        }
+
+        .gallery-figure:hover .gallery-img {
+            transform: scale(1.1) rotate(1deg);
+            filter: brightness(1.05);
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+            color: white;
+            padding: 20px;
+            transform: translateY(100%);
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            text-align: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .gallery-figure:hover .gallery-caption {
+            transform: translateY(0);
+        }
+
+        .gallery-caption h3 {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .gallery-caption p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .cta-content.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .cta-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .cta-content p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 80px 0 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 50px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-about h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .footer-about h3 span {
+            color: var(--secondary);
+        }
+
+        .footer-about p {
+            color: #b0b7c3;
+            margin-bottom: 20px;
+        }
+
+        .footer-links h4, .footer-contact h4, .footer-social h4 {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            color: white;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links ul li a {
+            color: #b0b7c3;
+            transition: var(--transition);
+            display: inline-block;
+        }
+
+        .footer-links ul li a:hover {
+            color: var(--primary);
+            padding-left: 5px;
+        }
+
+        .footer-contact p {
+            color: #b0b7c3;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .footer-contact i {
+            color: var(--secondary);
+            margin-top: 5px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: #2d3748;
+            border-radius: 50%;
+            color: white;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .social-icons a:hover {
+            background-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #2d3748;
+            color: #b0b7c3;
+            font-size: 0.9rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* News Modal for Full Articles */
+        .news-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .news-modal-content {
+            background: white;
+            max-width: 800px;
+            margin: 50px auto;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            animation: modalSlideIn 0.3s ease-out;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-header {
+            padding: 30px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .close-modal:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
+        }
+
+        .modal-article-category {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .modal-article-title {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .modal-article-meta {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.95rem;
+        }
+
+        .modal-body {
+            padding: 40px;
+        }
+
+        .modal-article-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+
+        .modal-article-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--dark);
+        }
+
+        .modal-article-content h2 {
+            font-size: 1.8rem;
+            margin: 30px 0 20px;
+            color: var(--dark);
+        }
+
+        .modal-article-content h3 {
+            font-size: 1.4rem;
+            margin: 25px 0 15px;
+            color: var(--dark);
+        }
+
+        .modal-article-content p {
+            margin-bottom: 20px;
+        }
+
+        .modal-article-content ul, .modal-article-content ol {
+            margin: 20px 0 20px 30px;
+        }
+
+        .modal-article-content li {
+            margin-bottom: 10px;
+        }
+
+        .modal-article-content strong {
+            color: var(--primary);
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 200px;
+        }
+
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid var(--light-gray);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .menu-btn {
+                display: block;
+            }
+
+            .Navbar {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+                transform: translateY(-100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: var(--transition);
+                z-index: 999;
+            }
+
+            #toggle:checked ~ .Navbar {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-btns {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .news-posts {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-article-image {
+                height: 250px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .modal-body {
+                padding: 20px;
+            }
+
+            .modal-header {
+                padding: 20px;
+            }
+
+            .modal-article-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header-bar">
+        <div class="header-container container">
+            <div class="logo">
+                <img src="images/About.png" alt="Flood Relief Logo">
+                <div class="logo-text">Flood <span>Relief Fund</span></div>
+            </div>
+            
+            <input type="checkbox" id="toggle">
+            <label for="toggle" class="menu-btn">
+                <i class="fas fa-bars"></i>
+            </label>
+            
+            <nav class="Navbar">
+                <a href="index.html" class="active">Home</a>
+                <a href="about.html">About</a>
+                <a href="gallery.html">Gallery</a>
+                <a href="donate.html">Donate</a>
+                <a href="get-involved.html">Get Involved</a>
+                <a href="team.html">Our Team</a>
+                <a href="#news">News</a>
+                <a href="contact.html">Contact</a>
+                <a href="signin.html" class="admin-nav-item" target="_blank">
+                    <i class="fas fa-lock"></i> Sign In
+                </a>
+                <a href="donate.html" class="donate-btn-nav">Donate Now</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <h1>Flood Relief Fund</h1>
+            
+            <div class="typing-container">
+                <div class="typing" id="typingText"></div>
+                <span class="cursor" id="typingCursor"></span>
+            </div>
+            
+            <p class="fade-text">Join us in providing relief and support to communities devastated by floods</p>
+            <p class="fade-text">Every donation helps save lives and rebuild futures</p>
+            
+            <div class="hero-btns">
+                <a href="donate.html" class="btn btn-primary">Donate Now</a>
+                <a href="get-involved.html" class="btn btn-secondary">Get Involved</a>
+                <a href="#gallery" class="btn btn-secondary">View Impact</a>
+                <a href="#news" class="btn btn-secondary">Latest News</a>
+                <button class="btn btn-secondary" onclick="refreshHomepageData()" id="refreshHomepageBtn" style="display: none;">
+                    <i class="fas fa-sync-alt"></i> Refresh Data
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="impact-stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card" id="statCard1">
+                    <div class="stat-icon">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <div class="stat-number" id="projectsCompleted">250+</div>
+                    <div class="stat-label">Projects Completed</div>
+                    <div class="stat-source" id="projectsSource">Updated regularly</div>
+                </div>
+                
+                <div class="stat-card" id="statCard2">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-number" id="livesImpacted">49,800+</div>
+                    <div class="stat-label">Lives Impacted</div>
+                    <div class="stat-source" id="livesSource">Since 2020</div>
+                </div>
+                
+                <div class="stat-card" id="statCard3">
+                    <div class="stat-icon">
+                        <i class="fas fa-hand-holding-heart"></i>
+                    </div>
+                    <div class="stat-number" id="activeVolunteers">48</div>
+                    <div class="stat-label">Active Volunteers</div>
+                    <div class="stat-source" id="volunteersSource">Currently active</div>
+                </div>
+                
+                <div class="stat-card" id="statCard4">
+                    <div class="stat-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <div class="stat-number" id="communitiesServed">7+</div>
+                    <div class="stat-label">Communities Served</div>
+                    <div class="stat-source" id="communitiesSource">Across the region</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recent Donations -->
+    <section class="recent-donations">
+        <div class="container">
+            <div class="section-title">
+                <h2>Recent Donations</h2>
+                <p>See how our supporters are making a difference</p>
+            </div>
+            <div class="donation-list" id="recentDonations">
+                <!-- Donations loaded by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery-section" id="gallery">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Impact in Images</h2>
+                <p>Witness the difference we're making in communities affected by floods</p>
+            </div>
+            
+            <div class="gallery" id="galleryContainer">
+                <!-- Gallery images loaded by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- News & Updates Section -->
+    <section class="news-section" id="news">
+        <div class="container">
+            <div class="section-title">
+                <h2>Latest News & Updates</h2>
+                <p>Stay informed about our flood relief efforts and important announcements</p>
+            </div>
+            
+            <div class="news-posts" id="newsContainer">
+                <!-- News articles loaded by JavaScript -->
+                <div class="loading">
+                    <div class="loading-spinner"></div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 50px;">
+                <button id="loadMoreNews" class="btn btn-primary" style="padding: 15px 40px;">
+                    <i class="fas fa-newspaper"></i> Load More News
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Make a Difference?</h2>
+                <p>Your support can change lives. Whether through donations, volunteering, or spreading awareness, every action counts in our fight against floods.</p>
+                <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                    <a href="donate.html" class="btn btn-primary" style="background: white; color: var(--primary);">Donate Now</a>
+                    <a href="get-involved.html" class="btn btn-secondary">Volunteer Today</a>
+                    <a href="#news" class="btn btn-secondary">Latest News</a>
+                    <button class="btn btn-secondary" onclick="checkDashboardConnection()">
+                        <i class="fas fa-plug"></i> Check Connection
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-container">
+                <!-- About Column -->
+                <div class="footer-about">
+                    <h3>Flood <span>Relief Fund</span></h3>
+                    <p>Bringing hope and relief to communities affected by floods. Together, we can make a difference.</p>
+                    <a href="donate.html" class="btn btn-primary" style="display: inline-block; padding: 10px 20px; margin-top: 10px;">Donate Now</a>
+                </div>
+
+                <!-- Quick Links Column -->
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="get-involved.html">Get Involved</a></li>
+                        <li><a href="#news">News</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Column -->
+                <div class="footer-contact">
+                    <h4>Contact</h4>
+                    <p><i class="fas fa-envelope"></i> info@floodrelieffund.org</p>
+                    <p><i class="fas fa-phone"></i> +254 700 123 456</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Bidco, Thika, Kenya</p>
+                </div>
+
+                <!-- Social Media Column -->
+                <div class="footer-social">
+                    <h4>Follow Us</h4>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        
+                    </div>
+                    <p style="margin-top: 20px; color: #b0b7c3; font-size: 0.9rem;">Subscribe to our newsletter</p>
+                    <form id="newsletterForm" style="margin-top: 10px;">
+                        <input type="email" id="newsletterEmail" placeholder="Your email" required style="padding: 10px; border-radius: 4px; border: none; width: 70%; margin-right: 5px;">
+                        <button type="submit" style="background: var(--primary); color: white; border: none; padding: 10px 15px; border-radius: 4px; cursor: pointer;">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Bottom copyright -->
+            <div class="footer-bottom">
+                <p>&copy; 2024 Flood Relief Fund. All Rights Reserved. | <a href="#" style="color: var(--secondary);">Privacy Policy</a> | <a href="#" style="color: var(--secondary);">Terms of Service</a></p>
+                <p style="margin-top: 10px; font-size: 0.8rem; color: #8a8f9c;">
+                    Dashboard Connection: <span id="connectionStatus">Checking...</span>
+                    <button onclick="forceRefresh()" style="background: none; border: none; color: var(--primary); cursor: pointer; margin-left: 10px;">
+                        <i class="fas fa-redo"></i> Force Refresh
+                    </button>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- News Modal -->
+    <div class="news-modal" id="newsModal">
+        <div class="news-modal-content">
+            <div class="modal-header">
+                <button class="close-modal" id="closeModal">&times;</button>
+                <div class="modal-article-category" id="modalCategory">Emergency</div>
+                <h2 class="modal-article-title" id="modalTitle">Emergency Response Teams Deployed</h2>
+                <div class="modal-article-meta">
+                    <span><i class="far fa-calendar"></i> <span id="modalDate">Today</span></span>
+                    <span><i class="far fa-clock"></i> <span id="modalReadTime">5 min read</span></span>
+                    <span><i class="far fa-user"></i> <span id="modalAuthor">Admin Team</span></span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <img id="modalImage" src="images/eva.jpg" alt="News Image" class="modal-article-image">
+                <div class="modal-article-content" id="modalContent">
+                    <!-- Article content loaded by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ===== ENHANCED DASHBOARD CONNECTION SYSTEM =====
+        const EnhancedDashboardConnection = {
+            // Storage keys (MUST MATCH DASHBOARD KEYS)
+            STORAGE_KEYS: {
+                NEWS: 'flood_relief_news',
+                GALLERY: 'flood_relief_gallery',
+                DONATIONS: 'flood_relief_donations',
+                STATS: 'flood_relief_stats'
+            },
+            
+            // Initialize connection
+            init() {
+                console.log("Enhanced Dashboard Connection Initialized");
+                this.addSyncStyles();
+                this.setupRealTimeUpdates();
+                this.checkConnectionStatus();
+                this.loadInitialData();
+                return this;
+            },
+            
+            // Load initial data
+            loadInitialData() {
+                // Ensure default data exists
+                this.ensureDefaultData();
+                
+                // Check if we have dashboard data
+                const hasDashboardData = localStorage.getItem('last_dashboard_update');
+                if (hasDashboardData) {
+                    this.refreshAllData();
+                }
+            },
+            
+            // Ensure default data exists
+            ensureDefaultData() {
+                // News data
+                if (!localStorage.getItem(this.STORAGE_KEYS.NEWS)) {
+                    const defaultNews = [
+                        {
+                            id: 1,
+                            title: "Emergency Response Teams Deployed to Flood-Affected Regions",
+                            excerpt: "Our emergency response teams have been deployed to assist communities affected by the latest floods.",
+                            fullContent: `<p>Our teams are working around the clock to provide immediate assistance to communities affected by severe flooding. We have deployed emergency response units to the hardest-hit areas, providing food, clean water, and medical supplies to those in need.</p>
+                                         <p>With your support, we can continue to expand our relief efforts and help more families recover from this disaster.</p>`,
+                            image: "images/eva.jpg",
+                            date: new Date().toLocaleDateString('en-US', { 
+                                year: 'numeric', 
+                                month: 'long', 
+                                day: 'numeric' 
+                            }),
+                            category: "Emergency",
+                            author: "Admin Team",
+                            readTime: "5 min read",
+                            status: "published",
+                            views: 0,
+                            featured: true
+                        },
+                        {
+                            id: 2,
+                            title: "$50,000 Donation Milestone Reached Thanks to Generous Supporters",
+                            excerpt: "Thanks to our generous supporters, we've reached a new donation milestone that will help hundreds of families.",
+                            fullContent: `<p>We are thrilled to announce that thanks to the incredible generosity of our supporters, we have reached the $50,000 donation milestone! These funds will provide:</p>
+                                         <ul>
+                                             <li>Emergency shelter for 200 families</li>
+                                             <li>Clean water for 1,000 people for one month</li>
+                                             <li>Medical supplies for 5 community health centers</li>
+                                             <li>School supplies for 500 children</li>
+                                         </ul>
+                                         <p>Thank you to everyone who has contributed to this amazing achievement!</p>`,
+                            image: "images/donate12.jpg",
+                            date: new Date().toLocaleDateString('en-US', { 
+                                year: 'numeric', 
+                                month: 'long', 
+                                day: 'numeric' 
+                            }),
+                            category: "Achievement",
+                            author: "Finance Team",
+                            readTime: "4 min read",
+                            status: "published",
+                            views: 0,
+                            featured: true
+                        }
+                    ];
+                    localStorage.setItem(this.STORAGE_KEYS.NEWS, JSON.stringify(defaultNews));
+                }
+                
+                // Gallery data
+                if (!localStorage.getItem(this.STORAGE_KEYS.GALLERY)) {
+                    const defaultGallery = [
+                        {
+                            id: 1,
+                            title: "Emergency Rescue Operation",
+                            category: "rescue",
+                            date: new Date().toLocaleDateString('en-US', { 
+                                year: 'numeric', 
+                                month: 'long', 
+                                day: 'numeric' 
+                            }),
+                            url: "images/eva.jpg",
+                            description: "Our team evacuating families from flood-affected areas",
+                            featured: true,
+                            uploadedBy: "Admin"
+                        },
+                        {
+                            id: 2,
+                            title: "Essential Supplies Distribution",
+                            category: "relief",
+                            date: new Date().toLocaleDateString('en-US', { 
+                                year: 'numeric', 
+                                month: 'long', 
+                                day: 'numeric' 
+                            }),
+                            url: "images/donate12.jpg",
+                            description: "Distributing food and clean water to affected communities",
+                            featured: true,
+                            uploadedBy: "Admin"
+                        },
+                        {
+                            id: 3,
+                            title: "Temporary Shelter Setup",
+                            category: "shelter",
+                            date: new Date().toLocaleDateString('en-US', { 
+                                year: 'numeric', 
+                                month: 'long', 
+                                day: 'numeric' 
+                            }),
+                            url: "images/hy.jpg",
+                            description: "Providing safe housing for displaced families",
+                            featured: true,
+                            uploadedBy: "Admin"
+                        }
+                    ];
+                    localStorage.setItem(this.STORAGE_KEYS.GALLERY, JSON.stringify(defaultGallery));
+                }
+                
+                // Donations data
+                if (!localStorage.getItem(this.STORAGE_KEYS.DONATIONS)) {
+                    const defaultDonations = [
+                        {
+                            id: 1,
+                            donor: "John Smith",
+                            amount: 250,
+                            date: new Date().toLocaleDateString('en-US', { 
+                                year: 'numeric', 
+                                month: 'long', 
+                                day: 'numeric' 
+                            }),
+                            method: "Credit Card",
+                            status: "completed",
+                            email: "john@example.com"
+                        },
+                        {
+                            id: 2,
+                            donor: "Sarah Johnson",
+                            amount: 100,
+                            date: new Date().toLocaleDateString('en-US', { 
+                                year: 'numeric', 
+                                month: 'long', 
+                                day: 'numeric' 
+                            }),
+                            method: "PayPal",
+                            status: "completed",
+                            email: "sarah@example.com"
+                        },
+                        {
+                            id: 3,
+                            donor: "Michael Brown",
+                            amount: 500,
+                            date: new Date(Date.now() - 86400000).toLocaleDateString('en-US', { 
+                                year: 'numeric', 
+                                month: 'long', 
+                                day: 'numeric' 
+                            }),
+                            method: "Bank Transfer",
+                            status: "completed",
+                            email: "michael@example.com"
+                        },
+                        {
+                            id: 4,
+                            donor: "Emma Wilson",
+                            amount: 75,
+                            date: new Date(Date.now() - 172800000).toLocaleDateString('en-US', { 
+                                year: 'numeric', 
+                                month: 'long', 
+                                day: 'numeric' 
+                            }),
+                            method: "M-Pesa",
+                            status: "completed",
+                            email: "emma@example.com"
+                        }
+                    ];
+                    localStorage.setItem(this.STORAGE_KEYS.DONATIONS, JSON.stringify(defaultDonations));
+                }
+                
+                // Stats data
+                if (!localStorage.getItem(this.STORAGE_KEYS.STATS)) {
+                    const donations = JSON.parse(localStorage.getItem(this.STORAGE_KEYS.DONATIONS) || '[]');
+                    const news = JSON.parse(localStorage.getItem(this.STORAGE_KEYS.NEWS) || '[]');
+                    const gallery = JSON.parse(localStorage.getItem(this.STORAGE_KEYS.GALLERY) || '[]');
+                    
+                    const defaultStats = {
+                        totalDonations: donations.reduce((sum, d) => sum + (d.amount || 0), 0),
+                        recentDonations: donations.slice(0, 7).reduce((sum, d) => sum + (d.amount || 0), 0),
+                        newsArticles: news.length,
+                        publishedArticles: news.filter(a => a.status === 'published').length,
+                        galleryImages: gallery.length,
+                        featuredGallery: gallery.filter(i => i.featured).length,
+                        activeVolunteers: 48,
+                        communitiesServed: 7,
+                        projectsCompleted: Math.floor(donations.reduce((sum, d) => sum + (d.amount || 0), 0) / 1000),
+                        lastUpdated: new Date().toISOString()
+                    };
+                    localStorage.setItem(this.STORAGE_KEYS.STATS, JSON.stringify(defaultStats));
+                }
+            },
+            
+            // Check connection status
+            checkConnectionStatus() {
+                const statusElement = document.getElementById('connectionStatus');
+                if (!statusElement) return;
+                
+                let connected = false;
+                let message = "Not connected";
+                let color = "#ea4335";
+                
+                // Check each storage key
+                const checks = [
+                    { key: this.STORAGE_KEYS.NEWS, name: "News" },
+                    { key: this.STORAGE_KEYS.GALLERY, name: "Gallery" },
+                    { key: this.STORAGE_KEYS.DONATIONS, name: "Donations" },
+                    { key: this.STORAGE_KEYS.STATS, name: "Stats" }
+                ];
+                
+                const results = checks.map(check => {
+                    const data = localStorage.getItem(check.key);
+                    const hasData = data && JSON.parse(data).length > 0;
+                    if (hasData) connected = true;
+                    return { ...check, hasData };
+                });
+                
+                const connectedCount = results.filter(r => r.hasData).length;
+                
+                if (connectedCount === checks.length) {
+                    message = "Fully connected ✓";
+                    color = "#34a853";
+                } else if (connectedCount > 0) {
+                    message = `Partially connected (${connectedCount}/${checks.length})`;
+                    color = "#fbbc05";
+                } else {
+                    message = "Using default data";
+                    color = "#5f6368";
+                }
+                
+                statusElement.textContent = message;
+                statusElement.style.color = color;
+                
+                // Show refresh button if connected
+                const refreshBtn = document.getElementById('refreshHomepageBtn');
+                if (refreshBtn) {
+                    refreshBtn.style.display = connectedCount > 0 ? 'inline-block' : 'none';
+                }
+                
+                return {
+                    connected: connected,
+                    connectedCount: connectedCount,
+                    totalCount: checks.length,
+                    results: results
+                };
+            },
+            
+            // Get all published articles
+            getPublishedArticles() {
+                let allArticles = [];
+                
+                // Get articles from localStorage
+                const storedNews = localStorage.getItem(this.STORAGE_KEYS.NEWS);
+                if (storedNews) {
+                    try {
+                        const parsedNews = JSON.parse(storedNews);
+                        // Filter only published articles
+                        const publishedNews = parsedNews.filter(article => 
+                            article.status === 'published' || article.status === undefined
+                        );
+                        allArticles = [...publishedNews];
+                    } catch (error) {
+                        console.error("Error loading news:", error);
+                    }
+                }
+                
+                // Sort by date (newest first)
+                return allArticles.sort((a, b) => new Date(b.date) - new Date(a.date));
+            },
+            
+            // Get featured gallery images
+            getGalleryImages() {
+                let galleryImages = [];
+                
+                // Get images from localStorage
+                const storedGallery = localStorage.getItem(this.STORAGE_KEYS.GALLERY);
+                if (storedGallery) {
+                    try {
+                        const parsedGallery = JSON.parse(storedGallery);
+                        // Get featured images first
+                        galleryImages = parsedGallery.filter(img => 
+                            img.featured === true || img.featured === undefined
+                        );
+                    } catch (error) {
+                        console.error("Error loading gallery:", error);
+                    }
+                }
+                
+                return galleryImages.slice(0, 6); // Show only 6 images
+            },
+            
+            // Get recent donations
+            getRecentDonations() {
+                let donations = [];
+                
+                // Get donations from localStorage
+                const storedDonations = localStorage.getItem(this.STORAGE_KEYS.DONATIONS);
+                if (storedDonations) {
+                    try {
+                        const parsedDonations = JSON.parse(storedDonations);
+                        // Get completed donations
+                        donations = parsedDonations.filter(d => 
+                            d.status === 'completed' || d.status === undefined
+                        );
+                    } catch (error) {
+                        console.error("Error loading donations:", error);
+                    }
+                }
+                
+                // Sort by date (newest first) and limit to 4
+                return donations
+                    .sort((a, b) => new Date(b.date) - new Date(a.date))
+                    .slice(0, 4);
+            },
+            
+            // Get current stats
+            getCurrentStats() {
+                const storedStats = localStorage.getItem(this.STORAGE_KEYS.STATS);
+                if (storedStats) {
+                    try {
+                        return JSON.parse(storedStats);
+                    } catch (error) {
+                        console.error("Error parsing stats:", error);
+                    }
+                }
+                
+                // Calculate from current data
+                const articles = this.getPublishedArticles();
+                const gallery = this.getGalleryImages();
+                const donations = this.getRecentDonations();
+                
+                return {
+                    totalDonations: donations.reduce((sum, d) => sum + (d.amount || 0), 0),
+                    recentDonations: donations.slice(0, 7).reduce((sum, d) => sum + (d.amount || 0), 0),
+                    newsArticles: articles.length,
+                    publishedArticles: articles.filter(a => a.status !== 'draft').length,
+                    galleryImages: gallery.length,
+                    featuredGallery: gallery.filter(i => i.featured).length,
+                    activeVolunteers: 48,
+                    communitiesServed: 7,
+                    projectsCompleted: Math.floor(donations.reduce((sum, d) => sum + (d.amount || 0), 0) / 1000),
+                    lastUpdated: new Date().toISOString()
+                };
+            },
+            
+            // Enhanced data refresh
+            refreshAllData() {
+                console.log("Refreshing all homepage data...");
+                
+                const refreshBtn = document.getElementById('refreshHomepageBtn');
+                if (refreshBtn) {
+                    refreshBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Refreshing...';
+                    refreshBtn.disabled = true;
+                }
+                
+                // Get updated data
+                const articles = this.getPublishedArticles();
+                const gallery = this.getGalleryImages();
+                const donations = this.getRecentDonations();
+                const stats = this.getCurrentStats();
+                
+                console.log(`Refreshed: ${articles.length} articles, ${gallery.length} images, ${donations.length} donations`);
+                
+                // Update UI
+                this.updateUIWithNewData(articles, gallery, donations, stats);
+                
+                // Show notification
+                this.showSyncNotification(articles.length, gallery.length, donations.length);
+                
+                // Update connection status
+                this.checkConnectionStatus();
+                
+                setTimeout(() => {
+                    if (refreshBtn) {
+                        refreshBtn.innerHTML = '<i class="fas fa-sync-alt"></i> Refresh Data';
+                        refreshBtn.disabled = false;
+                        
+                        // Animate button
+                        refreshBtn.style.transform = 'rotate(360deg)';
+                        setTimeout(() => {
+                            refreshBtn.style.transform = 'rotate(0deg)';
+                        }, 300);
+                    }
+                }, 1000);
+                
+                return { articles, gallery, donations, stats };
+            },
+            
+            updateUIWithNewData(articles, gallery, donations, stats) {
+                // Update stats in the UI
+                this.updateStatsUI(stats);
+                
+                // Refresh news display
+                if (window.newsSystem && window.newsSystem.displayNews) {
+                    window.newsSystem.displayNews();
+                }
+                
+                // Refresh gallery display
+                if (window.newsSystem && window.newsSystem.displayGallery) {
+                    window.newsSystem.displayGallery();
+                }
+                
+                // Refresh donations display
+                if (window.newsSystem && window.newsSystem.displayDonations) {
+                    window.newsSystem.displayDonations();
+                }
+            },
+            
+            updateStatsUI(stats) {
+                // Update the stats cards on homepage
+                const elements = {
+                    projectsCompleted: document.getElementById('projectsCompleted'),
+                    livesImpacted: document.getElementById('livesImpacted'),
+                    activeVolunteers: document.getElementById('activeVolunteers'),
+                    communitiesServed: document.getElementById('communitiesServed')
+                };
+                
+                if (elements.projectsCompleted) {
+                    elements.projectsCompleted.textContent = `${stats.projectsCompleted || 250}+`;
+                }
+                if (elements.livesImpacted) {
+                    elements.livesImpacted.textContent = `${((stats.projectsCompleted || 250) * 200).toLocaleString()}+`;
+                }
+                if (elements.activeVolunteers) {
+                    elements.activeVolunteers.textContent = stats.activeVolunteers || 48;
+                }
+                if (elements.communitiesServed) {
+                    elements.communitiesServed.textContent = `${stats.communitiesServed || 7}+`;
+                }
+            },
+            
+            showSyncNotification(newsCount, galleryCount, donationsCount) {
+                // Remove existing notification if any
+                const existingNotification = document.querySelector('.sync-notification');
+                if (existingNotification) {
+                    existingNotification.remove();
+                }
+                
+                const notification = document.createElement('div');
+                notification.className = 'sync-notification';
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 100px;
+                    right: 20px;
+                    background: var(--secondary);
+                    color: white;
+                    padding: 15px 20px;
+                    border-radius: var(--border-radius);
+                    box-shadow: var(--shadow);
+                    z-index: 9999;
+                    animation: slideInRight 0.5s ease-out;
+                    max-width: 300px;
+                `;
+                
+                notification.innerHTML = `
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-sync-alt" style="font-size: 1.2rem;"></i>
+                        <div>
+                            <div style="font-weight: 600; font-size: 0.9rem;">Homepage Updated</div>
+                            <div style="font-size: 0.8rem; opacity: 0.9; margin-top: 5px;">
+                                ${newsCount} news • ${galleryCount} images • ${donationsCount} donations
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                document.body.appendChild(notification);
+                
+                // Auto-remove after 3 seconds
+                setTimeout(() => {
+                    notification.style.animation = 'slideOutRight 0.5s ease-in forwards';
+                    setTimeout(() => {
+                        if (notification.parentNode) {
+                            notification.parentNode.removeChild(notification);
+                        }
+                    }, 500);
+                }, 3000);
+            },
+            
+            // Add CSS for animations
+            addSyncStyles() {
+                const style = document.createElement('style');
+                style.textContent = `
+                    @keyframes slideInRight {
+                        from {
+                            transform: translateX(100%);
+                            opacity: 0;
+                        }
+                        to {
+                            transform: translateX(0);
+                            opacity: 1;
+                        }
+                    }
+                    
+                    @keyframes slideOutRight {
+                        from {
+                            transform: translateX(0);
+                            opacity: 1;
+                        }
+                        to {
+                            transform: translateX(100%);
+                            opacity: 0;
+                        }
+                    }
+                    
+                    .sync-notification {
+                        animation: slideInRight 0.5s ease-out;
+                    }
+                `;
+                document.head.appendChild(style);
+            },
+            
+            // Check for real-time updates
+            setupRealTimeUpdates() {
+                let lastUpdateTime = localStorage.getItem('last_dashboard_update');
+                
+                // Check for updates every 5 seconds
+                const updateInterval = setInterval(() => {
+                    const currentUpdateTime = localStorage.getItem('last_dashboard_update');
+                    
+                    if (currentUpdateTime && currentUpdateTime !== lastUpdateTime) {
+                        console.log("Dashboard data update detected!");
+                        lastUpdateTime = currentUpdateTime;
+                        this.refreshAllData();
+                    }
+                    
+                    // Check connection status every 30 seconds
+                    if (Math.random() < 0.1) { // 10% chance each check
+                        this.checkConnectionStatus();
+                    }
+                }, 5000); // Check every 5 seconds
+                
+                // Store interval ID for cleanup
+                this.updateInterval = updateInterval;
+            },
+            
+            // Cleanup function
+            destroy() {
+                if (this.updateInterval) {
+                    clearInterval(this.updateInterval);
+                }
+            }
+        };
+
+        // Initialize enhanced dashboard connection
+        window.dashboardConnection = EnhancedDashboardConnection.init();
+
+        // News Data Storage
+        const NewsSystem = {
+            currentPage: 1,
+            articlesPerPage: 4,
+            
+            init() {
+                this.displayNews();
+                this.displayGallery();
+                this.displayDonations();
+                this.setupEventListeners();
+                return this;
+            },
+            
+            displayNews() {
+                const container = document.getElementById('newsContainer');
+                if (!container) return;
+                
+                // Get ALL articles from dashboard connection
+                const allArticles = window.dashboardConnection.getPublishedArticles();
+                
+                // Calculate which articles to show
+                const startIndex = (this.currentPage - 1) * this.articlesPerPage;
+                const endIndex = startIndex + this.articlesPerPage;
+                const articlesToShow = allArticles.slice(startIndex, endIndex);
+                
+                if (articlesToShow.length === 0) {
+                    container.innerHTML = `
+                        <div style="text-align: center; padding: 40px; grid-column: 1 / -1;">
+                            <i class="fas fa-newspaper" style="font-size: 3rem; color: var(--light-gray); margin-bottom: 20px;"></i>
+                            <h3 style="color: var(--gray); margin-bottom: 10px;">No News Articles Yet</h3>
+                            <p style="color: var(--gray);">Check back later for updates on flood relief efforts.</p>
+                            <button class="btn btn-primary" onclick="refreshHomepageData()" style="margin-top: 20px;">
+                                <i class="fas fa-sync-alt"></i> Refresh Data
+                            </button>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                container.innerHTML = articlesToShow.map(article => `
+                    <div class="news-card" data-article-id="${article.id}">
+                        <img src="${article.image || 'images/eva.jpg'}" alt="${article.title}" class="news-image" 
+                             onerror="this.onerror=null; this.src='images/eva.jpg'">
+                        <div class="news-content">
+                            <div class="news-meta">
+                                <span class="news-category">${article.category || 'General'}</span>
+                                <span class="news-date"><i class="far fa-calendar"></i> ${article.date || 'Recently'}</span>
+                            </div>
+                            <h3 class="news-title">${article.title}</h3>
+                            <p class="news-excerpt">${article.excerpt || article.fullContent?.substring(0, 150) + '...' || 'Read more about this update'}</p>
+                            <a href="#" class="news-read-more" data-read-article="${article.id}">
+                                Read Full Update <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                `).join('');
+                
+                // Add animation after a short delay
+                setTimeout(() => {
+                    document.querySelectorAll('.news-card').forEach((card, index) => {
+                        setTimeout(() => {
+                            card.classList.add('animated');
+                        }, index * 100);
+                    });
+                }, 100);
+                
+                // Update load more button
+                this.updateLoadMoreButton(allArticles.length);
+            },
+            
+            updateLoadMoreButton(totalArticles) {
+                const loadMoreBtn = document.getElementById('loadMoreNews');
+                if (loadMoreBtn) {
+                    const totalPages = Math.ceil(totalArticles / this.articlesPerPage);
+                    if (this.currentPage >= totalPages) {
+                        loadMoreBtn.style.display = 'none';
+                    } else {
+                        loadMoreBtn.style.display = 'inline-block';
+                        loadMoreBtn.innerHTML = `<i class="fas fa-newspaper"></i> Load More News (${this.currentPage}/${totalPages})`;
+                    }
+                }
+            },
+            
+            loadMoreNews() {
+                this.currentPage++;
+                this.displayNews();
+                
+                // Scroll to news section if not visible
+                const newsSection = document.getElementById('news');
+                if (newsSection) {
+                    const rect = newsSection.getBoundingClientRect();
+                    if (rect.top < 0 || rect.bottom > window.innerHeight) {
+                        newsSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            },
+            
+            displayGallery() {
+                const container = document.getElementById('galleryContainer');
+                if (!container) return;
+                
+                // Get gallery images from dashboard connection
+                const galleryImages = window.dashboardConnection.getGalleryImages();
+                
+                container.innerHTML = galleryImages.map((image, index) => `
+                    <div class="gallery-figure">
+                        <img src="${image.url}" alt="${image.title}" class="gallery-img" 
+                             onerror="this.onerror=null; this.src='images/eva.jpg'">
+                        <div class="gallery-caption">
+                            <h3>${image.title}</h3>
+                            <p>${image.description || 'Flood relief efforts'}</p>
+                            <div style="margin-top: 10px; font-size: 0.8rem; opacity: 0.8;">
+                                <i class="fas fa-calendar"></i> ${image.date}
+                                ${image.uploadedBy ? `<br><i class="fas fa-user"></i> Uploaded by: ${image.uploadedBy}` : ''}
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+                
+                // Add animation after a short delay
+                setTimeout(() => {
+                    document.querySelectorAll('.gallery-figure').forEach((figure, index) => {
+                        setTimeout(() => {
+                            figure.classList.add('animated');
+                        }, index * 100);
+                    });
+                }, 100);
+            },
+            
+            displayDonations() {
+                const container = document.getElementById('recentDonations');
+                if (!container) return;
+                
+                // Get donations from dashboard connection
+                const donations = window.dashboardConnection.getRecentDonations();
+                
+                container.innerHTML = donations.map((donation, index) => `
+                    <div class="donation-card" style="animation-delay: ${index * 0.1}s;">
+                        <div class="donor-name">${donation.donor}</div>
+                        <div class="donation-amount">$${donation.amount}</div>
+                        <div class="donation-date">${donation.date}</div>
+                        <div style="margin-top: 8px; font-size: 0.8rem; color: var(--gray);">
+                            <i class="fas fa-${donation.method === 'card' ? 'credit-card' : donation.method === 'paypal' ? 'paypal' : 'university'}"></i>
+                            ${donation.method?.charAt(0).toUpperCase() + donation.method?.slice(1) || 'Donation'}
+                        </div>
+                    </div>
+                `).join('');
+            },
+            
+            getArticleById(id) {
+                // Search in all articles from dashboard connection
+                const allArticles = window.dashboardConnection.getPublishedArticles();
+                return allArticles.find(article => article.id == id) || null;
+            },
+            
+            showArticleModal(articleId) {
+                const article = this.getArticleById(articleId);
+                if (!article) return;
+                
+                // Update modal content
+                document.getElementById('modalCategory').textContent = article.category || 'General';
+                document.getElementById('modalTitle').textContent = article.title;
+                document.getElementById('modalDate').textContent = article.date || 'Recently';
+                document.getElementById('modalReadTime').textContent = article.readTime || '3 min read';
+                document.getElementById('modalAuthor').textContent = article.author || 'Admin Team';
+                document.getElementById('modalImage').src = article.image || 'images/eva.jpg';
+                document.getElementById('modalImage').alt = article.title;
+                document.getElementById('modalContent').innerHTML = article.fullContent || article.excerpt || '<p>No content available.</p>';
+                
+                // Show modal
+                document.getElementById('newsModal').style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            },
+            
+            closeArticleModal() {
+                document.getElementById('newsModal').style.display = 'none';
+                document.body.style.overflow = 'auto';
+            },
+            
+            setupEventListeners() {
+                // Load more news button
+                const loadMoreBtn = document.getElementById('loadMoreNews');
+                if (loadMoreBtn) {
+                    loadMoreBtn.addEventListener('click', () => this.loadMoreNews());
+                }
+                
+                // Read article links
+                document.addEventListener('click', (e) => {
+                    if (e.target.closest('[data-read-article]')) {
+                        e.preventDefault();
+                        const articleId = e.target.closest('[data-read-article]').getAttribute('data-read-article');
+                        this.showArticleModal(articleId);
+                    }
+                });
+                
+                // Close modal button
+                const closeModalBtn = document.getElementById('closeModal');
+                if (closeModalBtn) {
+                    closeModalBtn.addEventListener('click', () => this.closeArticleModal());
+                }
+                
+                // Close modal when clicking outside
+                document.getElementById('newsModal').addEventListener('click', (e) => {
+                    if (e.target === document.getElementById('newsModal')) {
+                        this.closeArticleModal();
+                    }
+                });
+                
+                // Newsletter form
+                const newsletterForm = document.getElementById('newsletterForm');
+                if (newsletterForm) {
+                    newsletterForm.addEventListener('submit', (e) => {
+                        e.preventDefault();
+                        const email = document.getElementById('newsletterEmail').value;
+                        if (email && email.includes('@')) {
+                            alert('Thank you for subscribing to our newsletter!');
+                            newsletterForm.reset();
+                        }
+                    });
+                }
+            }
+        };
+
+        // Animation Controller
+        const AnimationController = {
+            init() {
+                this.setupScrollAnimations();
+                this.setupTypingEffect();
+                this.setupMobileMenu();
+                this.setupScrollEffects();
+                return this;
+            },
+            
+            setupScrollAnimations() {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('animated');
+                        }
+                    });
+                }, {
+                    threshold: 0.1,
+                    rootMargin: '0px 0px -50px 0px'
+                });
+                
+                // Observe elements for animation
+                document.querySelectorAll('.stat-card, .section-title, .recent-donations, .cta-content, .gallery-figure, .news-card').forEach(el => {
+                    observer.observe(el);
+                });
+            },
+            
+            setupTypingEffect() {
+                const typingElement = document.getElementById('typingText');
+                const cursor = document.getElementById('typingCursor');
+                const text = "Providing immediate relief and long-term support to communities devastated by floods. Every contribution helps save lives and rebuild futures.";
+                let index = 0;
+
+                function typeWriter() {
+                    if (index < text.length) {
+                        typingElement.textContent += text.charAt(index);
+                        index++;
+                        setTimeout(typeWriter, 40);
+                    } else {
+                        cursor.style.display = 'none';
+                        revealTexts();
+                    }
+                }
+
+                function revealTexts() {
+                    const fadeTexts = document.querySelectorAll('.fade-text');
+                    fadeTexts.forEach((p, i) => {
+                        setTimeout(() => {
+                            p.classList.add('fade-in');
+                        }, i * 800);
+                    });
+                }
+
+                typeWriter();
+            },
+            
+            setupMobileMenu() {
+                const toggle = document.getElementById('toggle');
+                if (toggle) {
+                    toggle.addEventListener('change', function() {
+                        document.body.style.overflow = this.checked ? 'hidden' : 'auto';
+                    });
+                    
+                    document.querySelectorAll('.Navbar a').forEach(link => {
+                        link.addEventListener('click', () => {
+                            document.getElementById('toggle').checked = false;
+                            document.body.style.overflow = 'auto';
+                        });
+                    });
+                }
+            },
+            
+            setupScrollEffects() {
+                window.addEventListener('scroll', () => {
+                    const header = document.querySelector('.header-bar');
+                    if (window.scrollY > 50) {
+                        header.classList.add('scrolled');
+                    } else {
+                        header.classList.remove('scrolled');
+                    }
+                });
+            }
+        };
+
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log("Initializing Flood Relief Homepage...");
+            
+            // Initialize animation controller
+            AnimationController.init();
+            
+            // Initialize news system
+            window.newsSystem = NewsSystem.init();
+            
+            // Initial data refresh
+            setTimeout(() => {
+                refreshHomepageData();
+            }, 1000);
+            
+            console.log("Homepage initialized successfully!");
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                const modal = document.getElementById('newsModal');
+                if (modal.style.display === 'block') {
+                    NewsSystem.closeArticleModal();
+                }
+            }
+        });
+
+        // ===== DASHBOARD INTEGRATION FUNCTIONS =====
+        
+        // Function to refresh homepage data (can be called from dashboard)
+        window.refreshHomepageData = function() {
+            console.log("Refreshing homepage data...");
+            
+            const refreshBtn = document.getElementById('refreshHomepageBtn');
+            if (refreshBtn) {
+                refreshBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Refreshing...';
+                refreshBtn.disabled = true;
+            }
+            
+            // Refresh all data
+            const result = window.dashboardConnection.refreshAllData();
+            
+            setTimeout(() => {
+                if (refreshBtn) {
+                    refreshBtn.innerHTML = '<i class="fas fa-sync-alt"></i> Refresh Data';
+                    refreshBtn.disabled = false;
+                    
+                    // Animate button
+                    refreshBtn.style.transform = 'rotate(360deg)';
+                    setTimeout(() => {
+                        refreshBtn.style.transform = 'rotate(0deg)';
+                    }, 300);
+                }
+                
+                console.log("Homepage data refreshed:", result);
+            }, 1000);
+            
+            return result;
+        };
+        
+        // Function to check dashboard connection status
+        window.checkDashboardConnection = function() {
+            console.log("=== DASHBOARD CONNECTION STATUS ===");
+            
+            const status = window.dashboardConnection.checkConnectionStatus();
+            
+            console.log("Connection status:", status);
+            console.log("=== END STATUS CHECK ===");
+            
+            // Show alert with details
+            alert(`Dashboard Connection Status:\n\n` +
+                  `Connected: ${status.connectedCount}/${status.totalCount}\n` +
+                  `News: ${status.results[0].hasData ? '✓' : '✗'}\n` +
+                  `Gallery: ${status.results[1].hasData ? '✓' : '✗'}\n` +
+                  `Donations: ${status.results[2].hasData ? '✓' : '✗'}\n` +
+                  `Stats: ${status.results[3].hasData ? '✓' : '✗'}\n\n` +
+                  `See browser console for more details.`);
+            
+            return status;
+        };
+        
+        // Force refresh function
+        window.forceRefresh = function() {
+            // Clear all localStorage data
+            const keys = [
+                'flood_relief_news',
+                'flood_relief_gallery',
+                'flood_relief_donations',
+                'flood_relief_stats',
+                'last_dashboard_update'
+            ];
+            
+            keys.forEach(key => localStorage.removeItem(key));
+            
+            // Request fresh data from dashboard
+            localStorage.setItem('homepage_force_refresh', new Date().toISOString());
+            
+            // Refresh data
+            refreshHomepageData();
+            
+            alert("Cache cleared! Requesting fresh data from dashboard...");
+        };
+        
+        // Auto-refresh when page becomes visible
+        document.addEventListener('visibilitychange', function() {
+            if (!document.hidden) {
+                // Page became visible, check for updates
+                const lastUpdate = localStorage.getItem('last_dashboard_update');
+                if (lastUpdate) {
+                    const now = new Date();
+                    const lastUpdateTime = new Date(lastUpdate);
+                    const minutesSinceUpdate = (now - lastUpdateTime) / (1000 * 60);
+                    
+                    if (minutesSinceUpdate > 1) { // If more than 1 minute since last update
+                        console.log("Page became visible after", minutesSinceUpdate.toFixed(1), "minutes, checking for updates...");
+                        refreshHomepageData();
+                    }
+                }
+            }
+        });
+        
+        // Listen for storage events (dashboard updates)
+        window.addEventListener('storage', function(e) {
+            if (e.key && e.key.startsWith('flood_relief_')) {
+                console.log(`Dashboard data updated: ${e.key}`);
+                refreshHomepageData();
+            }
+            
+            if (e.key === 'force_homepage_refresh') {
+                console.log("Forced refresh requested");
+                refreshHomepageData();
+            }
+        });
+        
+        // Auto-check connection every 30 seconds
+        setInterval(() => {
+            window.dashboardConnection.checkConnectionStatus();
+        }, 30000);
+        
+    </script>
+</body>
+</html>
